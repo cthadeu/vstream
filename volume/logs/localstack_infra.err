@@ -1,0 +1,48 @@
+2022-07-24T19:47:56.380  INFO --- [  MainThread] localstack.utils.bootstrap : Execution of "prepare_installation" took 4621.34ms
+2022-07-24T19:47:57.307  WARN --- [  Thread-108] hypercorn.error            : ASGI Framework Lifespan error, continuing without Lifespan support
+2022-07-24T19:47:57.307  WARN --- [  Thread-108] hypercorn.error            : ASGI Framework Lifespan error, continuing without Lifespan support
+2022-07-24T19:47:57.362  INFO --- [  Thread-108] hypercorn.error            : Running on https://0.0.0.0:4566 (CTRL + C to quit)
+2022-07-24T19:47:57.362  INFO --- [  Thread-108] hypercorn.error            : Running on https://0.0.0.0:4566 (CTRL + C to quit)
+2022-07-24T19:47:57.386  INFO --- [  MainThread] localstack.utils.bootstrap : Execution of "start_runtime_components" took 1005.10ms
+2022-07-24T19:49:29.216  INFO --- [   asgi_gw_0] localstack.request.http    : GET / => 200
+2022-07-24T19:49:31.008  INFO --- [   asgi_gw_1] localstack.utils.bootstrap : Execution of "_load_service_plugin" took 1083.46ms
+2022-07-24T19:49:31.028  INFO --- [  Thread-123] l.services.motoserver      : starting moto server on http://0.0.0.0:47889
+2022-07-24T19:49:31.056  INFO --- [   asgi_gw_1] localstack.services.infra  : Starting mock S3 service on http port 4566 ...
+2022-07-24T19:49:39.331  INFO --- [   asgi_gw_1] localstack.utils.bootstrap : Execution of "require" took 9409.94ms
+2022-07-24T19:49:39.372  INFO --- [   asgi_gw_1] localstack.request.aws     : AWS s3.ListObjects => 404 (404)
+2022-07-24T19:50:19.239  INFO --- [   asgi_gw_1] localstack.request.http    : GET / => 200
+2022-07-24T19:50:19.724  INFO --- [   asgi_gw_0] localstack.request.aws     : AWS s3.ListObjects => 404 (404)
+2022-07-24T19:52:00.748 ERROR --- [  Thread-108] hypercorn.error            : Error in ASGI Framework
+Traceback (most recent call last):
+  File "/opt/code/localstack/.venv/lib/python3.10/site-packages/hypercorn/asyncio/task_group.py", line 21, in _handle
+    await invoke_asgi(app, scope, receive, send)
+  File "/opt/code/localstack/.venv/lib/python3.10/site-packages/hypercorn/utils.py", line 247, in invoke_asgi
+    await app(scope, receive, send)
+  File "/opt/code/localstack/localstack/aws/serving/asgi.py", line 34, in __call__
+    return await self.wsgi(scope, receive, send)
+  File "/opt/code/localstack/localstack/http/asgi.py", line 352, in __call__
+    return await self.handle_http(scope, receive, send)
+  File "/opt/code/localstack/localstack/http/asgi.py", line 384, in handle_http
+    iterable = await self.event_loop.run_in_executor(
+  File "/usr/local/lib/python3.10/asyncio/base_events.py", line 818, in run_in_executor
+    executor.submit(func, *args), loop=self)
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 167, in submit
+    raise RuntimeError('cannot schedule new futures after shutdown')
+RuntimeError: cannot schedule new futures after shutdown
+2022-07-24T19:52:00.748 ERROR --- [  Thread-108] hypercorn.error            : Error in ASGI Framework
+Traceback (most recent call last):
+  File "/opt/code/localstack/.venv/lib/python3.10/site-packages/hypercorn/asyncio/task_group.py", line 21, in _handle
+    await invoke_asgi(app, scope, receive, send)
+  File "/opt/code/localstack/.venv/lib/python3.10/site-packages/hypercorn/utils.py", line 247, in invoke_asgi
+    await app(scope, receive, send)
+  File "/opt/code/localstack/localstack/aws/serving/asgi.py", line 34, in __call__
+    return await self.wsgi(scope, receive, send)
+  File "/opt/code/localstack/localstack/http/asgi.py", line 352, in __call__
+    return await self.handle_http(scope, receive, send)
+  File "/opt/code/localstack/localstack/http/asgi.py", line 384, in handle_http
+    iterable = await self.event_loop.run_in_executor(
+  File "/usr/local/lib/python3.10/asyncio/base_events.py", line 818, in run_in_executor
+    executor.submit(func, *args), loop=self)
+  File "/usr/local/lib/python3.10/concurrent/futures/thread.py", line 167, in submit
+    raise RuntimeError('cannot schedule new futures after shutdown')
+RuntimeError: cannot schedule new futures after shutdown

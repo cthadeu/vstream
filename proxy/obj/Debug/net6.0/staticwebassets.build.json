@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "vG9O9At9cvbuwSERq8bKBCmzOHj+dzxetoUG4Iyih5o=",
+  "Source": "video-streamming-proxy",
+  "BasePath": "_content/video-streamming-proxy",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
