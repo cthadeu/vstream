@@ -1,0 +1,28 @@
+@model video_streamming_proxy.Controllers.VideoUpload
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Upload</title>
+</head>
+<body>
+<div>
+    <form action="/Upload/Video" enctype="multipart/form-data" method="POST">
+        <dl>
+            <dt>
+                <label>Selecione o video</label>
+            </dt>
+            <dd>
+                <input name="VideoFile" type="file">
+            </dd>
+        </dl>
+        <input class="btn" type="submit" value="Upload"/>
+    </form>
+</div>
+</body>
+</html>

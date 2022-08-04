@@ -1,41 +1,53 @@
 version: "3.3"
 services:
   parser:
-    build: ./parser
-    ports:
-      - "8000:5000"
+    build: ./parser        
     volumes:
-      - data_stream:/data:rw
-  localstack:
-    container_name: "vstream-localstack"
-    image: localstack/localstack
-    ports:
-      - "127.0.0.1:4566:4566"            # LocalStack Gateway
-      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
-    environment:
-      - AWS_DEFAULT_REGION=sa-east-1
-      - AWS_ACCESS_KEY_ID=fakeAccessKeyId
-      - AWS_SECRET_ACCESS_KEY=fakeSecretAccessKey
-      - DEFAULT_REGION=sa-east-1
-      - DEBUG=${DEBUG-}
-      - PERSISTENCE=${PERSISTENCE-}
-      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}      
-      - DOCKER_HOST=unix:///var/run/docker.sock
-    volumes:
-      - "./volume:/var/lib/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      - data_stream:/data:rw    
+    
+  # localstack:
+  #   container_name: "vstream-localstack"
+  #   image: localstack/localstack
+  #   ports:
+  #     - "127.0.0.1:4566:4566"            # LocalStack Gateway
+  #     - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+  #   environment:
+  #     - AWS_DEFAULT_REGION=sa-east-1
+  #     - AWS_ACCESS_KEY_ID=fakeAccessKeyId
+  #     - AWS_SECRET_ACCESS_KEY=fakeSecretAccessKey
+  #     - DEFAULT_REGION=sa-east-1
+  #     - DEBUG=${DEBUG-}
+  #     - PERSISTENCE=${PERSISTENCE-}
+  #     - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}      
+  #     - DOCKER_HOST=unix:///var/run/docker.sock
+  #   volumes:
+  #     - "./volume:/var/lib/localstack"
+  #     - "/var/run/docker.sock:/var/run/docker.sock"
   nginx:
     container_name: nginx-filestream
     image: nginx:latest
     ports:
       - 8080:80
     volumes:
-      - data_stream:/usr/share/nginx/html
-      - ./parser/index.html:/usr/share/nginx/html/index.html
+      - data_stream:/usr/share/nginx/html/proxy      
   proxy:
     build: ./proxy
     ports:
-      - "8000:5000"
+      - "8888:5000"
+    volumes:
+      - data_stream:/app/uploaded:rw
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    ports:
+        - 5672:5672
+        - 15672:15672
+    volumes:
+        - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+        - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     
 volumes:
   data_stream:
