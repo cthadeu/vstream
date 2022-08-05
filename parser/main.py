@@ -7,7 +7,7 @@ import base64
 import sys
 import logging
 
-FORMAT = '%(asctime)s %(clientip)-15s %(user)-8s %(message)s'
+FORMAT = '%(asctime)s %(message)s'
 logging.basicConfig(format=FORMAT)
 QUEUE_NAME = 'video-stream-requested'
 

@@ -4,7 +4,8 @@ services:
     build: ./parser        
     volumes:
       - data_stream:/data:rw    
-    
+    networks:
+      - vstream_network    
   # localstack:
   #   container_name: "vstream-localstack"
   #   image: localstack/localstack
@@ -29,7 +30,10 @@ services:
     ports:
       - 8080:80
     volumes:
-      - data_stream:/usr/share/nginx/html/proxy      
+      - data_stream:/usr/share/nginx/html/proxy
+    networks:
+      - vstream_network
+
   proxy:
     build: ./proxy
     ports:
@@ -38,6 +42,8 @@ services:
       - data_stream:/app/uploaded:rw
     depends_on:
       - rabbitmq
+    networks:
+      - vstream_network
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -48,7 +54,13 @@ services:
     volumes:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - vstream_network
     
 volumes:
   data_stream:
-    name: "vstream_data"    
+    name: "vstream_data"
+
+networks:
+  vstream_network:
+    name: vstream_network    

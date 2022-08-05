@@ -16,6 +16,8 @@ public class UploadController : Controller
     }
     
     [HttpPost]
+    [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
+    [RequestSizeLimit(209715200)]
     public IActionResult Video(VideoUpload videoUpload)
     {
         
