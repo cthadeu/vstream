@@ -1,9 +1,12 @@
 
+using System.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+builder.Services.AddScoped<IDbConnection>((sp) => new NpgsqlConnection("Server=database;Port=5432;Database=vstream;User Id=postgres;Password=postgres"));
+
 builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
@@ -13,16 +16,7 @@ builder.Services
         options.Cookie.Name = "vstream";
 
     });
-    // .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, c =>
-    // {
-    //     c.Authority = $"https://{builder.Configuration["Auth0:Domain"]}";
-    //     c.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-    //     {
-    //         ValidAudience = builder.Configuration["Auth0:Audience"],
-    //         ValidIssuer = $"{builder.Configuration["Auth0:Domain"]}"
-    //     };
-    //     
-    // });
+    
 
 builder.Services.AddMvc();
 builder.Services.AddAuthorization(options =>

@@ -20,11 +20,13 @@ public class UploadController : Controller
     [RequestSizeLimit(209715200)]
     public IActionResult Video(VideoUpload videoUpload)
     {
-        
+        var videoIdentifier = Guid.NewGuid().ToString().Replace("-","");
         var fileName = Path.GetFileName(videoUpload.VideoFile.FileName);
+        var fileExtension = Path.GetExtension(fileName);
+        var newFileName = $"{videoIdentifier}.{fileExtension}";
         var contentType = videoUpload.VideoFile.ContentType;
-        videoUpload.VideoFile.CopyTo(new FileStream($"/app/uploaded/{videoUpload.VideoFile.FileName}", FileMode.Create));
-        ProcessVideoStreamQueue.SendVideoToProcessQueue(fileName);
+        videoUpload.VideoFile.CopyTo(new FileStream($"/app/uploaded/{newFileName}", FileMode.Create));
+        ProcessVideoStreamQueue.SendVideoToProcessQueue(newFileName);
         Console.WriteLine("UPLOADED");
         return RedirectToAction("Index");
     }

@@ -7,8 +7,11 @@
     <RootNamespace>video_streamming_proxy</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup> 
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.7" /> 
+  <ItemGroup>     
+    
+    <PackageReference Include="Npgsql" Version="6.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.7" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
     <PackageReference Include="RabbitMQ.Client" Version="6.4.0" /> 
     <PackageReference Include="Yarp.ReverseProxy" Version="1.1.0" />
   </ItemGroup> 
