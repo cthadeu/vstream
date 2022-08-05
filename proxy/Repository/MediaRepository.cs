@@ -5,6 +5,7 @@ using Dapper;
 public interface IMediaRepository
 {
     Task Save(Media media);
+    Task Update(Media media);
     Task<IEnumerable<Media>> GetAll();
 }
 
@@ -26,19 +27,35 @@ public class MediaRepository : IMediaRepository
 
     public async Task Save(Media media)
     {
-        var insert = @"insert into media(id, filename, name, created_at, status) 
-                        values (@id, @filename, @name, @createdAt, @status)";
+        var insert = @"insert into media(id, filename, name, created_at, slug, status) 
+                        values (@id, @filename, @name, @createdAt, @slug, @status)";
         var parameters = new 
         {
             id = media.Id,
             filename = media.Filename,
             name = media.Name,
             createdAt = media.CreatedAt,
-            status = media.Status
+            status = media.Status,
+            slug = media.Slug
         };
         await _connection.ExecuteAsync(insert, parameters);
     }
 
+    public async Task Update(Media media)
+    {
+        var update = @"update media set 
+                        filename = @filename, 
+                        name = @name,
+                        status = @status
+                        where id = @id";
+        var parameters = new 
+        {
+            id = media.Id,
+            filename = media.Filename,
+            name = media.Name,
+            status = media.Status,
+        };
 
-    
+        await _connection.ExecuteAsync(update, parameters);
+    }
 }

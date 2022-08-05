@@ -1,6 +1,6 @@
 namespace video_streamming_proxy.Domain; 
 
-enum MediaStatus {
+public enum MediaStatus {
     Processing,
     Completed
 }

@@ -56,6 +56,20 @@ services:
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     networks:
       - vstream_network
+
+  database:
+    container_name: vstream_database
+    image: postgres
+    environment:
+      POSTGRES_DB: vstream
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - vstream_network    
+    volumes:
+      - ./proxy/Migrations/create_media_table.sql:/docker-entrypoint-initdb.d/create_media_table.sql
     
 volumes:
   data_stream:

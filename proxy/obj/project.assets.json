@@ -612,24 +612,26 @@
     ]
   },
   "packageFolders": {
-    "/Users/cyrox/.nuget/packages/": {}
+    "C:\\Users\\cyrot\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/cyrox/personal/vstream/proxy/video-streamming-proxy.csproj",
+      "projectUniqueName": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\video-streamming-proxy.csproj",
       "projectName": "video-streamming-proxy",
-      "projectPath": "/Users/cyrox/personal/vstream/proxy/video-streamming-proxy.csproj",
-      "packagesPath": "/Users/cyrox/.nuget/packages/",
-      "outputPath": "/Users/cyrox/personal/vstream/proxy/obj/",
+      "projectPath": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\video-streamming-proxy.csproj",
+      "packagesPath": "C:\\Users\\cyrot\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/cyrox/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\cyrot\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -687,7 +689,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.302/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }
