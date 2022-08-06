@@ -17,7 +17,7 @@ builder.Services
 
     });
     
-
+builder.Services.AddHostedService<ProcessedVideoStreamConsumerTask>();
 builder.Services.AddMvc();
 builder.Services.AddAuthorization(options =>
 {

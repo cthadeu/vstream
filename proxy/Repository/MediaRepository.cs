@@ -7,6 +7,9 @@ public interface IMediaRepository
     Task Save(Media media);
     Task Update(Media media);
     Task<IEnumerable<Media>> GetAll();
+    Task<Media> GetByFilename(string filename);
+
+    Task<Media> GetById(Guid id);
 }
 
 public class MediaRepository : IMediaRepository
@@ -24,6 +27,21 @@ public class MediaRepository : IMediaRepository
         var result = await _connection.QueryAsync<Media>(query);
         return result;
     }
+
+    public async Task<Media> GetByFilename(string filename)
+    {
+        var query = "select * from media where name = @filename";
+        var result = await _connection.QueryAsync<Media>(query, new { filename=filename});
+        return result.FirstOrDefault();
+    }
+
+    public async Task<Media> GetById(Guid id)
+    {
+         var query = "select * from media where id = @id";
+        var result = await _connection.QueryAsync<Media>(query, new { id=$"{id.ToString()}" });
+        return result.FirstOrDefault();
+    }
+    
 
     public async Task Save(Media media)
     {

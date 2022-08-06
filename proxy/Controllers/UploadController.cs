@@ -28,10 +28,11 @@ public class UploadController : Controller
     [RequestSizeLimit(209715200)]
     public async Task<IActionResult> Video(VideoUpload videoUpload)
     {
-        var videoIdentifier = Guid.NewGuid().ToString().Replace("-","");
+        var videoGuid = Guid.NewGuid();
+        var videoIdentifier = videoGuid.ToString().Replace("-","");
         var fileName = Path.GetFileName(videoUpload.VideoFile.FileName);
         var fileExtension = Path.GetExtension(fileName);
-        var newFileName = $"{videoIdentifier}.{fileExtension}";
+        var newFileName = $"{videoIdentifier}{fileExtension}";
         var contentType = videoUpload.VideoFile.ContentType;
         videoUpload.VideoFile.CopyTo(new FileStream($"/app/uploaded/{newFileName}", FileMode.Create));
         ProcessVideoStreamQueue.SendVideoToProcessQueue(newFileName);
@@ -41,7 +42,8 @@ public class UploadController : Controller
             Name = newFileName,
             CreatedAt = DateTime.UtcNow,
             Status = MediaStatus.Processing,
-            Slug = "test"    
+            Slug = "test",
+            Id = videoGuid.ToString()
         };
         await _mediaRepository.Save(media);
         Console.WriteLine("UPLOADED");

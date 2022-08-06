@@ -5,7 +5,7 @@ public enum MediaStatus {
     Completed
 }
 public class Media {
-    public Guid Id { get; set; }
+    public string Id { get; set; }
     public string Filename { get; set; }
     public DateTime CreatedAt { get; set;}
     public string Name { get; set; }

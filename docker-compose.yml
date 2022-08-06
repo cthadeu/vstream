@@ -39,9 +39,7 @@ services:
     ports:
       - "8888:5000"
     volumes:
-      - data_stream:/app/uploaded:rw
-    depends_on:
-      - rabbitmq
+      - data_stream:/app/uploaded:rw    
     networks:
       - vstream_network
 

@@ -8,8 +8,10 @@ import sys
 import logging
 
 FORMAT = '%(asctime)s %(message)s'
-logging.basicConfig(format=FORMAT)
+logging.basicConfig(format=FORMAT, stream=sys.stdout, level=logging.DEBUG)
 QUEUE_NAME = 'video-stream-requested'
+QUEUE_COMPLETED_NAME = 'video-stream-completed'
+connection = pika.BlockingConnection(pika.ConnectionParameters(host="rabbitmq"))
 
 def monitor(ffmpeg, duration, time_, time_left, process):  
     per = round(time_ / duration * 100)
@@ -29,6 +31,12 @@ def create_video_stream(filename):
         newName =  s.split(".")[0]
         logging.info("stream name %s" % newName)
         dash.output("/data/%s.m3u8" % (newName), monitor=monitor)
+        logging.info("PARSE COMPLETE")
+        channel = connection.channel()    
+        channel.queue_declare(queue=QUEUE_COMPLETED_NAME)
+        channel.basic_publish(exchange='',
+                      routing_key=QUEUE_COMPLETED_NAME,
+                      body=newName)
     except Exception as er:
         logging.info("ERROR %r" % er)
 
@@ -36,10 +44,11 @@ def message_callback(ch, method, properties, body):
     logging.info("Message received %r" % body)     
     create_video_stream(body)
 
+
+
 def main():    
     try:
-        logging.info("Waiting for new messages")
-        connection = pika.BlockingConnection(pika.ConnectionParameters(host="rabbitmq"))
+        logging.info("Waiting for new messages")        
         channel = connection.channel()    
         channel.queue_declare(queue=QUEUE_NAME)
         channel.basic_consume(queue=QUEUE_NAME, auto_ack=True, on_message_callback=message_callback)        

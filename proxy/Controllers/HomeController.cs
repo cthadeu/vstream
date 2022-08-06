@@ -6,6 +6,13 @@ namespace video_streamming_proxy.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly IMediaRepository _mediaRepository;
+
+    public HomeController(IMediaRepository mediaRepository)
+    {
+        _mediaRepository = mediaRepository;
+    }
+
     [HttpGet]
     public IActionResult Index() 
     {
@@ -32,8 +39,10 @@ public class HomeController : Controller
     }
 
     [HttpGet]
-    public IActionResult Content()
+    public async Task<IActionResult> Content()
     {
+        var videos = await _mediaRepository.GetAll();       
+        ViewBag.Items = videos.ToArray(); 
         return View();
     }
 
