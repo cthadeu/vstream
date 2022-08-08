@@ -68,6 +68,7 @@ services:
       - vstream_network    
     volumes:
       - ./proxy/Migrations/create_media_table.sql:/docker-entrypoint-initdb.d/create_media_table.sql
+      - ./proxy/Migrations/create_course_table.sql:/docker-entrypoint-initdb.d/create_course_table.sql
     
 volumes:
   data_stream:

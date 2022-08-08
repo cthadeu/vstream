@@ -8,25 +8,29 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = video_streamming_proxy
 build_property.RootNamespace = video_streamming_proxy
-build_property.ProjectDir = c:\Users\cyrot\per\video-streamming\proxy\
+build_property.ProjectDir = C:\Users\cyrot\per\video-streamming\proxy\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = c:\Users\cyrot\per\video-streamming\proxy
+build_property.MSBuildProjectDirectory = C:\Users\cyrot\per\video-streamming\proxy
 build_property._RazorSourceGeneratorDebug = 
 
-[c:/Users/cyrot/per/video-streamming/proxy/Views/Home/Content.cshtml]
+[C:/Users/cyrot/per/video-streamming/proxy/Views/Home/Content.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250ZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/cyrot/per/video-streamming/proxy/Views/Home/Index.cshtml]
+[C:/Users/cyrot/per/video-streamming/proxy/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/cyrot/per/video-streamming/proxy/Views/Home/Videos.cshtml]
+[C:/Users/cyrot/per/video-streamming/proxy/Views/Home/Videos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWRlb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[c:/Users/cyrot/per/video-streamming/proxy/Views/Upload/Index.cshtml]
+[C:/Users/cyrot/per/video-streamming/proxy/Views/Shared/_Main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NYWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/cyrot/per/video-streamming/proxy/Views/Upload/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXBsb2FkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

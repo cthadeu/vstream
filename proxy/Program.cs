@@ -2,11 +2,13 @@
 using System.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Npgsql;
+using video_streamming_proxy.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 builder.Services.AddScoped<IDbConnection>((sp) => new NpgsqlConnection("Server=database;Port=5432;Database=vstream;User Id=postgres;Password=postgres"));
 builder.Services.AddScoped<IMediaRepository, MediaRepository>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>

@@ -1,16 +1,20 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using video_streamming_proxy.Repository;
 
 namespace video_streamming_proxy.Controllers;
 
 public class HomeController : Controller
 {
     private readonly IMediaRepository _mediaRepository;
+    private readonly ICourseRepository courseRepository;
 
-    public HomeController(IMediaRepository mediaRepository)
+    public HomeController(IMediaRepository mediaRepository, ICourseRepository courseRepository)
     {
         _mediaRepository = mediaRepository;
+        this.courseRepository = courseRepository;
+
     }
 
     [HttpGet]
@@ -41,8 +45,8 @@ public class HomeController : Controller
     [HttpGet]
     public async Task<IActionResult> Content()
     {
-        var videos = await _mediaRepository.GetAll();       
-        ViewBag.Items = videos.ToArray(); 
+        var courses = await courseRepository.GetAll();       
+        ViewBag.Courses = courses.ToArray(); 
         return View();
     }
 

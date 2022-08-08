@@ -2,47 +2,58 @@
 @using video_streamming_proxy.Domain
 
 @{
-    Layout = null;
+    Layout = "_Main";
 }
 
 <!DOCTYPE html>
 @{
-    Media[] data = ViewBag.Items;
+    Course[] data = ViewBag.Items;
 }
-<html>
-<head>
-    <title>Content</title>
-</head>
-<body>
-<div>
-    <h3>Videos</h3>
-    <br>  
-    <table border="1" width="100%">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Slug</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-                @foreach(var item in data)
-                {
-                    <tr>
-                        <td><a href='/Home/Videos?vname=@item.Id.Replace("-","")'>@item.Id</a></td>
-                        <td>@item.Name</td>
-                        <td>@item.Slug</td>
-                    </tr>
-                }
-            
-            
-        </tbody>
-    </table>
-    <a href="/Home/Videos?vname=test1">Videos</a>
-    <br>
-    <a href="/Upload">Upload</a>
 
+<div class="bg-light-gray h-full px-6">
+    <div class="container mx-auto">
+        <h1 class="text-xl font-semibold dark-gray mb-6 lg:py-10 py-8">Featured Classifieds</h1>
+        <div class="flex flex-wrap items-center lg:justify-between justify-center">
+        
+                <div class="mx-2 w-72 xl:mb-0 mb-8">
+                    <div>
+                        <img src="https://cdn.tuk.dev/assets/templates/classified/Bitmap (1).png" class="w-full h-44" />
+                    </div>
+                    <div class="bg-white">
+                        <div class="flex items-center justify-between px-4 pt-4">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bookmark" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <path d="M9 4h6a2 2 0 0 1 2 2v14l-5-3l-5 3v-14a2 2 0 0 1 2 -2" />
+                                </svg>
+                            </div>
+                            <div class="light-yellow py-1.5 px-6 rounded-full">
+                                <p class="text-xs dark-yellow">Featured</p>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center">
+                                <h2 class="text-lg font-semibold dark-gray">Test</h2>
+                                <span class="px-2 bg-dot-color">&#8226;</span>
+                                <p class="text-xs light-gray">Test</p>
+                            </div>
+                            <p class="text-xs light-gray mt-2">Duis congue mattis odio, a posuere urna feugiat id praesent id est tellus.</p>
+                            <div class="flex mt-4">
+                                <div>
+                                    <p class="text-xs light-gray px-2 bg-dark-gray py-1">12 months warranty</p>
+                                </div>
+                                <div class="pl-2">
+                                    <p class="text-xs light-gray px-2 bg-dark-gray py-1">Complete box</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between py-4">
+                                <h2 class="purple text-xs font-semibold">Bay Area, San Francisco</h2>
+                                <h3 class="purple text-xl font-semibold">$350</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        </div>   
+    </div>
 </div>
-</body>
-</html>
