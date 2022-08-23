@@ -8,8 +8,9 @@ namespace video_streamming_proxy.Repository
     {
         Task Save(Course course);
         Task<IEnumerable<Course>> GetAll();
-
         Task<IEnumerable<Chapter>> GetChapters(string courseId);
+        Task<Course> GetBySlug(string slug);
+        Task<IEnumerable<Course>> GetByUser(string userId);
     }
     public class CourseRepository: ICourseRepository
     {
@@ -27,6 +28,21 @@ namespace video_streamming_proxy.Repository
             return result;
         }
 
+        public async Task<Course> GetBySlug(string slug)
+        {
+            var query = "select * from courses where slug = @slug";
+            var result = await _connection.QueryAsync<Course>(query, new { slug });
+            return result.FirstOrDefault();
+        }
+
+        public async Task<IEnumerable<Course>> GetByUser(string userId)
+        {
+            var query = @"select * from courses c 
+                          inner join user_courses uc on (uc.course_id = c.id) 
+                          where uc.user_id = @id";
+            var result = await _connection.QueryAsync<Course>(query, new { id = userId });
+            return result;
+        }
 
         public async Task<IEnumerable<Chapter>> GetChapters(string courseId)
         {

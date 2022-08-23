@@ -1,0 +1,39 @@
+﻿@model video_streamming_proxy.Controllers.SignupModel
+
+@{
+    Layout = "_Main";
+}
+
+<div class="mx-auto container px-6">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })       
+    <div class="flex w-full flex-col items-center justif-center py-16 xl:px-0 px-4">                
+        <h2 class="lg:text-2xl text-lg black pt-6 text-center lg:mb-0 mb-4">Crie sua conta</h2>                
+        <div class="flex justify-center items-center pt-6">
+                
+                <div class="mb-8">@ViewBag.SuccessMessage</div> 
+                <div class="mb-8">@ViewBag.ErrorMessage</div> 
+                
+                <form action="/Signup/Create"  method="post" class="form-horizontal" role="form">
+                <div class="mb-5">                          
+                    <input type="text" name="Name" class="w-full text-light-gray focus:outline-none focus:border font-normal pl-3 pr-24 lg:py-5 py-2 flex items-center text-2xl border-dark-gray rounded border relative z-10" placeholder="Nome" />                          
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+                <div class="mb-5">                          
+                    <input type="text" name="Email" class="w-full text-light-gray focus:outline-none focus:border font-normal pl-3 pr-24 lg:py-5 py-2 flex items-center text-2xl border-dark-gray rounded border relative z-10" placeholder="E-mail" />                          
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="mb-5">                                                    
+                <input type="text" name="Phone" class="w-full text-light-gray focus:outline-none focus:border font-normal pl-3 pr-24 lg:py-5 py-2 flex items-center text-2xl border-dark-gray rounded border relative z-10" placeholder="Celular" />                  
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+                <div class="mb-5">                                                    
+                <input type="password" name="Password" class="w-full text-light-gray focus:outline-none focus:border font-normal pl-3 pr-24 lg:py-5 py-2 flex items-center text-2xl border-dark-gray rounded border relative z-10" placeholder="Senha" />                  
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>                    
+                <button type="submit" class="py-4 px-8 bg-black text-white lg:text-2xl border border-black hover:opacity-75 text-lg mr-4 focus:outline-none">
+                    Criar
+                </button>
+            </form>                    
+        </div>
+    </div>
+</div>        

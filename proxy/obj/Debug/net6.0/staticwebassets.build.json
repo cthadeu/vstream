@@ -1,11 +1,54 @@
 {
   "Version": 1,
-  "Hash": "vG9O9At9cvbuwSERq8bKBCmzOHj+dzxetoUG4Iyih5o=",
+  "Hash": "0B/ZIggkw1vBYF9U8AgZdLIse9QfGZZS/inVeLj3Ie4=",
   "Source": "video-streamming-proxy",
   "BasePath": "_content/video-streamming-proxy",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "video-streamming-proxy\\wwwroot",
+      "Source": "video-streamming-proxy",
+      "ContentRoot": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\",
+      "BasePath": "_content/video-streamming-proxy",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\assets\\css\\style.css",
+      "SourceId": "video-streamming-proxy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\",
+      "BasePath": "_content/video-streamming-proxy",
+      "RelativePath": "assets/css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\css\\style.css"
+    },
+    {
+      "Identity": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\assets\\js\\index.js",
+      "SourceId": "video-streamming-proxy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\",
+      "BasePath": "_content/video-streamming-proxy",
+      "RelativePath": "assets/js/index.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\js\\index.js"
+    }
+  ]
 }

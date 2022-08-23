@@ -9,12 +9,15 @@ public class HomeController : Controller
 {
     private readonly IMediaRepository _mediaRepository;
     private readonly ICourseRepository courseRepository;
+    private readonly IUserRepository userRepository;
 
-    public HomeController(IMediaRepository mediaRepository, ICourseRepository courseRepository)
+    public HomeController(IMediaRepository mediaRepository, 
+        ICourseRepository courseRepository,
+        IUserRepository userRepository)
     {
         _mediaRepository = mediaRepository;
         this.courseRepository = courseRepository;
-
+        this.userRepository = userRepository;
     }
 
     [HttpGet]
@@ -26,12 +29,16 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(string username, string password)
     {
-        if (username == "test" && password == "test")
+        var user = await userRepository.FindByEmailAndPassword(username, password);
+        Console.WriteLine(user);
+        if (user != null)
         {
             var claims = new List<Claim>
             {
-                new Claim("user", "Test"),
-                new Claim("role", "Member")
+                new Claim("user", user.Name),
+                new Claim("id", user.Id),
+                new Claim("email", user.Email),
+                new Claim("role", user.UserType.ToString())
             };
 
             await HttpContext.SignInAsync(new ClaimsPrincipal(new ClaimsIdentity(claims, "Cookies", "user", "role")));

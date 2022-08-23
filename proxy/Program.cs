@@ -6,9 +6,10 @@ using video_streamming_proxy.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
-builder.Services.AddScoped<IDbConnection>((sp) => new NpgsqlConnection("Server=database;Port=5432;Database=vstream;User Id=postgres;Password=postgres"));
+builder.Services.AddScoped<IDbConnection>((sp) => new NpgsqlConnection("Server=localhost;Port=5432;Database=vstream;User Id=postgres;Password=postgres"));
 builder.Services.AddScoped<IMediaRepository, MediaRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
@@ -19,7 +20,7 @@ builder.Services
 
     });
     
-builder.Services.AddHostedService<ProcessedVideoStreamConsumerTask>();
+//builder.Services.AddHostedService<ProcessedVideoStreamConsumerTask>();
 builder.Services.AddMvc();
 builder.Services.AddAuthorization(options =>
 {
@@ -33,8 +34,8 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapDefaultControllerRoute();
-});
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.Run("http://*:5000");

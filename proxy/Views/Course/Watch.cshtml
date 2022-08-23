@@ -1,0 +1,58 @@
+﻿@page
+@using video_streamming_proxy.Domain
+
+@{
+    Layout = "_Main";
+}
+<!DOCTYPE html>
+@{
+    Course course = ViewBag.Course;
+}
+<div class="w-full border border-inner">
+    <div class="flex flex-row">
+    <div class="basis-1/4">
+           
+    </div>
+    <div class="basis-1/2">
+        <div class="w-full h-full lg:h-64">    
+            <div class="w-full h-full">
+                <div style="height: 100%" class="slider w-full">
+                    <div class="slide-ana">
+                        <div class="w-full relative">
+                            <img src="https://cdn.tuk.dev/assets/templates/classified/Mask.png" class="w-full w-full h-full object-cover object-center" />
+                        </div>
+                        <div class="w-full relative">
+                            <img src="https://cdn.tuk.dev/assets/templates/classified/Mask.png" class="w-full w-full h-full object-cover object-center" />
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>  
+    </div>
+
+    <div class="pl-8 mt-20">
+        <h1 class="text-2xl font-semibold dark-gray lg:mt-0 mt-4">@course.Name</h1>
+        <p class="text-xs line-height-18 light-gray py-3">
+            @course.Description
+            <br />
+            <br />        
+        </p>
+        <div class="flex mt-4">
+            <div>
+                <p class="text-xs light-gray px-2 bg-dark-gray py-1">12 months warranty</p>
+            </div>
+            <div class="pl-2">
+                <p class="text-xs light-gray px-2 bg-dark-gray py-1">Complete box</p>
+            </div>
+            <div class="pl-2">
+                <p class="text-xs light-gray px-2 bg-dark-gray py-1">Complete box</p>
+            </div>
+        </div>
+   
+        <div class="flex items-center justify-between mt-8 py-4">
+            <h2 class="purple text-sm font-semibold">Bay Area, San Francisco</h2>
+            <h3 class="purple text-3xl font-semibold">$350</h3>
+        </div>
+    </div>
+</div>
+</div>
