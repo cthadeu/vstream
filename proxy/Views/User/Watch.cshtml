@@ -1,0 +1,52 @@
+﻿@page
+@using video_streamming_proxy.Domain
+
+@{
+    Layout = "_Main";
+}
+<!DOCTYPE html>
+@{    
+    Course course = ViewBag.Course;
+    Chapter[] chapters = ViewBag.Chapters;    
+    Chapter chap = ViewBag.SelectedChapter;
+}
+<h2 class="mb-5 text-2xl font-bold text-slate-600">@course.Name</h2>
+<div class="w-full border border-inner">
+    
+    <div class="grid grid-cols-3 gap-4">
+    
+        <div class="col-span-2 aspect-video">        
+            <video id="video" class="w-full aspect-video" preload="none" autoplay="false"  controls></video>                    
+        </div>
+
+        <div >
+            @foreach (var chapter in chapters) 
+            {
+                <a href="/user/courses/@course.Id?chapter=@chapter.Id">                            
+                <div class="w-full h-32 border-slate-300 border-b border-l p-3 @(chap.Id == chapter.Id ? "bg-slate-700 text-white" : "") '">
+                
+                
+                    <h3 class="font-bold">@chapter.Title</h3>
+                    <h5>@chapter.Description</h5>
+                </div>
+                </a>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    var video = document.getElementById('video');    
+    var videoSrc = '/proxy/@chap?.Media?.StreamName';
+    if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+    }
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+    
+    }
+</script>    

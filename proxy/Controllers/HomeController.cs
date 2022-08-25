@@ -57,10 +57,4 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpGet]
-    public IActionResult Videos([FromQuery(Name = "vname")] string vname)
-    {
-        ViewData["vname"] = vname + ".m3u8";
-        return View();
-    }
 }

@@ -15,5 +15,9 @@ public class User
     public UserType UserType { get; set; }
     public IEnumerable<Course> Courses { get; set; }
     
+    public User() {}
+    public User(string Id) {
+        this.Id = Id;
+    }
 }
 

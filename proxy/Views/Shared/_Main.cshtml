@@ -10,6 +10,7 @@
         <link href="/assets/css/style.css" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.gassets.com" />
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script>
         <title>Home</title>
     </head>   
     <body>
@@ -23,8 +24,8 @@
                     <div class="flex justify-between items-center">
                         <div>
                             <ul class="cursor-pointer flex items-center text-sm light-gray font-semibold">                                
-                                <li class="pl-10 cursor-pointer hover:opacity-75">Treinamentos</li>
-                                <li class="pl-10 cursor-pointer hover:opacity-75">Contato</li>
+                                <li class="pl-10 cursor-pointer hover:opacity-75"><a href="/home/content">Home</a></li>
+                                <li class="pl-10 cursor-pointer hover:opacity-75"><a href="/courses">Cursos</li>
                                 <li class="pl-10 cursor-pointer hover:opacity-75"><a href="/signup">Cadastre-se</a></li>
                             </ul>
                         </div>
@@ -57,7 +58,7 @@
                                                 </div>
                                             </li>
                                             <li class="cursor-pointer text-light-gray text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex items-center">
-                                                <a href="/courses/user/@userId">
+                                                <a href="/user/courses">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-help" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                                         <path stroke="none" d="M0 0h24v24H0z" />
                                                         <circle cx="12" cy="12" r="9" />

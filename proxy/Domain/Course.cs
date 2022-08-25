@@ -23,4 +23,6 @@ public class Course
     public DateTime CreatedAt { get; set; }
     public CourseStatus Status { get; set; }
     public string Slug { get; set; }
+
+    public IEnumerable<Chapter> Chapters { get; set; }
 }

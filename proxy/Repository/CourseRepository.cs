@@ -11,6 +11,8 @@ namespace video_streamming_proxy.Repository
         Task<IEnumerable<Chapter>> GetChapters(string courseId);
         Task<Course> GetBySlug(string slug);
         Task<IEnumerable<Course>> GetByUser(string userId);
+
+        Task<Course> GetById(string courseId);
     }
     public class CourseRepository: ICourseRepository
     {
@@ -26,6 +28,20 @@ namespace video_streamming_proxy.Repository
             var query = "select * from courses order by created_at desc";
             var result = await _connection.QueryAsync<Course>(query);
             return result;
+        }
+
+        public async Task<Course> GetById(string courseId)
+        {
+            var queries = @"select * from courses where id = @courseId;
+                            select * from modules where course_id = @courseId";
+
+            var result = await _connection.QueryMultipleAsync(queries, new { courseId });
+            var course = await result.ReadFirstAsync<Course>();
+            var chapters = await result.ReadAsync<Chapter>();
+            if (course != null) 
+                course.Chapters = chapters;
+            
+            return course;
         }
 
         public async Task<Course> GetBySlug(string slug)
@@ -46,13 +62,18 @@ namespace video_streamming_proxy.Repository
 
         public async Task<IEnumerable<Chapter>> GetChapters(string courseId)
         {
-            var query = @"select * from courses 
-                          inner join chapters on chapters.course_id = courses.id
-                          inner join media on chapters.media_id = media.id 
-                          where courses.id = @id";
-            var result = await _connection.QueryAsync<Chapter>(query, new { id = courseId });
+            var query = @"select * from modules                           
+                          inner join media on modules.media_id = media.id 
+                          where modules.course_id = @id";
+            var result = await _connection.QueryAsync<Chapter, Media, Chapter>(query, (chapter, media) => 
+            {
+                chapter.Media = media;
+                return chapter;
+            } ,new { id = courseId });            
             return result;
         }
+
+        
 
         public async Task Save(Course course)
         {

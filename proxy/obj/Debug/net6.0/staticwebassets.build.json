@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0B/ZIggkw1vBYF9U8AgZdLIse9QfGZZS/inVeLj3Ie4=",
+  "Hash": "g9bek5AwxZ2E1QcxrUoWwvQasXkWylgU6dyhX8tmadA=",
   "Source": "video-streamming-proxy",
   "BasePath": "_content/video-streamming-proxy",
   "Mode": "Default",
@@ -32,6 +32,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\css\\style.css"
+    },
+    {
+      "Identity": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\assets\\css\\waves.css",
+      "SourceId": "video-streamming-proxy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\",
+      "BasePath": "_content/video-streamming-proxy",
+      "RelativePath": "assets/css/waves.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\css\\waves.css"
     },
     {
       "Identity": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\assets\\js\\index.js",

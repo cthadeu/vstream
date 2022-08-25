@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using video_streamming_proxy.Repository;
 
@@ -15,6 +16,15 @@ namespace video_streamming_proxy.Controllers
             this.courseRepository = courseRepository;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAvailableCourses()
+        {
+            var courses = await courseRepository.GetAll();       
+            ViewBag.Courses = courses.ToArray(); 
+            return View();
+        }
+        
+
         [HttpGet("{slug}")]
         public async Task<IActionResult> GetCourseBySlug([FromRoute] string slug)
         {
@@ -23,7 +33,8 @@ namespace video_streamming_proxy.Controllers
             return View("Detail");
         }
 
-        [HttpGet("user/{userId}")]
+        [Authorize]
+        [HttpGet("user/")]
         public async Task<IActionResult> GetCoursesFromUser([FromRoute] string userId)
         {
             var items = await this.courseRepository.GetByUser(userId);
@@ -31,12 +42,6 @@ namespace video_streamming_proxy.Controllers
             return View("Courses");
         }
 
-        [HttpGet("user/{userId}/course/{courseId}")]
-        public async Task<IActionResult> WatchMode([FromRoute] string userId, [FromRoute] string courseId)
-        {
-            var items = await this.courseRepository.GetByUser(userId);
-            ViewBag.Course = items.Where(x => x.Id == courseId).First();
-            return View("Watch");
-        }
+
     }
 }
