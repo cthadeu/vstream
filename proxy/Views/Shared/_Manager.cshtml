@@ -1,0 +1,40 @@
+@{
+    var userId = User.Identity.IsAuthenticated ? User.Claims.Where(x => x.Type == "id").FirstOrDefault().Value : null;
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />        
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link href="/assets/css/style.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.gassets.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script>
+        <title>Manager</title>
+    </head>   
+    <body>
+        <div class="mx-auto container px-6">
+
+            <div class="h-full px-2">
+            <div class="container mx-auto">
+                <h1 class="text-xl font-semibold lg:py-9 py-5">Gerenciador da Plataforma</h1>
+                <div class="grid grid-flow-col auto-cols-max">
+                    <div class="mr-5 p-2"><a href="/manager/products">Cursos</a></div>
+                    <div class="mr-5 p-2"><a href="/manager/orders">Compras</a></div>
+                    <div class="mr-5 p-2"><a href="/manager/users">Usuarios</a></div>        
+                </div>
+                <div class="mt-5">
+                    @RenderBody()
+                </div>   
+            </div>
+            </div>
+
+                       
+        <!-- body -->
+        
+        </div
+        <!-- body -->
+        <script src="~/assets/js/index.js"></script>
+    </body>
+</html>

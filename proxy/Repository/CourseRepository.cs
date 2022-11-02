@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using System.Data;
 using video_streamming_proxy.Domain;
+using System.Linq;
 
 namespace video_streamming_proxy.Repository
 {
@@ -25,7 +26,11 @@ namespace video_streamming_proxy.Repository
 
         public async Task<IEnumerable<Course>> GetAll()
         {
-            var query = "select * from courses order by created_at desc";
+            var query = @"select courses.*, course_prices.amount from courses
+                            left join course_prices on course_prices.course_id = courses.id
+                            where course_prices.amount is null or course_prices.active = 1
+                            order by courses.created_at desc, course_prices.created_at desc";
+            
             var result = await _connection.QueryAsync<Course>(query);
             return result;
         }
@@ -46,14 +51,16 @@ namespace video_streamming_proxy.Repository
 
         public async Task<Course> GetBySlug(string slug)
         {
-            var query = "select * from courses where slug = @slug";
+            var query = @"select c.*, course_prices.amount from courses c                           
+                          left join course_prices on (course_prices.course_id = c.id)
+                          where course_prices.active = 1 or course_prices.id is null and c.slug = @slug";
             var result = await _connection.QueryAsync<Course>(query, new { slug });
             return result.FirstOrDefault();
         }
 
         public async Task<IEnumerable<Course>> GetByUser(string userId)
         {
-            var query = @"select * from courses c 
+            var query = @"select c.* from courses c 
                           inner join user_courses uc on (uc.course_id = c.id) 
                           where uc.user_id = @id";
             var result = await _connection.QueryAsync<Course>(query, new { id = userId });
@@ -77,8 +84,8 @@ namespace video_streamming_proxy.Repository
 
         public async Task Save(Course course)
         {
-            var insert = @"insert into courses(id, name, description, status, slug, created_at) 
-                           values(@id, @name, @description, @status, @slug, @created_at)";
+            var insert = @"insert into courses(id, name, description, status, slug, created_at, thumbnail) 
+                           values(@id, @name, @description, @status, @slug, @created_at, @thumbnail)";
 
             var parameters = new
             {
@@ -87,7 +94,8 @@ namespace video_streamming_proxy.Repository
                 description = course.Description,
                 status = course.Status,
                 slug = course.Slug,
-                created_at = course.CreatedAt
+                created_at = course.CreatedAt,
+                thumbnail = course.Thumbnail
             };
 
             await _connection.ExecuteAsync(insert, parameters);

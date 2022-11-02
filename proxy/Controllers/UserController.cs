@@ -46,14 +46,16 @@ namespace video_streamming_proxy.Controllers
             return View("Watch");
         }
 
+        [Authorize]
         [HttpGet("courses/{slug}/purchase")]
         public async Task<IActionResult> ConfirmPurchase([FromRoute] string slug)
         {
-            var userId = HttpContext.User.Claims.Where(x => x.Type == "id").First().Value;
-            var item = await this.courseRepository.GetBySlug(slug);
+            var userId = HttpContext.User.Claims.Where(x => x.Type == "id").FirstOrDefault().Value;                        
             var userCourses = await this.courseRepository.GetByUser(userId);
-            ViewBag.UserHasCourse = userCourses.Any(x => x.Id == item.Id);
-            ViewBag.Detail = item;
+            var course = await this.courseRepository.GetBySlug(slug);
+            Console.WriteLine($"ID => {course.Id}");            
+            ViewBag.UserHasCourse = userCourses?.Any(x => x.Id == course.Id);
+            ViewBag.Detail = course;
             return View();
         }
 

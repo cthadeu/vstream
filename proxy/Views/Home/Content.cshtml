@@ -14,14 +14,14 @@
 <div class="bg-light-gray h-full px-6">
     <div class="container mx-auto">
         <h1 class="text-xl font-semibold dark-gray mb-6 lg:py-10 py-8">Featured Classifieds</h1>
-        <div class="flex flex-wrap items-center lg:justify-between justify-center">
+        <div class="flex flex-wrap">
         
                 @foreach (var course in data) 
                 { 
                 
-                <div class="mx-2 w-72 xl:mb-0 mb-8">
+                <div class="mx-2 w-64">
                     <div>
-                        <img src="https://cdn.tuk.dev/assets/templates/classified/Bitmap (1).png" class="w-full h-44" />
+                        <img src="@course.GetThumbnailImage()" class="w-full h-44" />
                     </div>
                     <div class="bg-white">
                         <div class="p-4">
@@ -30,12 +30,15 @@
                             </div>
                             <p class="text-xs light-gray mt-2">@course.Description</p>
                             
-                            <div class="flex items-center justify-between py-4">
-                                <a href="/user/courses/@course.Slug/purchase" class="bg-slate-900 text-white p-3">
+                            <div class="flex items-center">
+                                <h3 class="purple text-xl font-semibold">$@course.Amount</h3>
+                            </div>
+                            <div class="flex items-center align-center  py-4">
+                                <a href="/user/courses/@course.Slug/purchase" class="bg-slate-900 mr-5 text-white p-3">
                                     Comprar
                                 </a>
                                 <a href="/courses/@course.Slug" class="p-3 bg-gray-300">Ver mais</a>
-                                <h3 class="purple text-xl font-semibold">$350</h3>
+                                
                             </div>
                         </div>
                     </div>

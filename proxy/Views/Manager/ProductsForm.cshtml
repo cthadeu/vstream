@@ -1,0 +1,33 @@
+@model video_streamming_proxy.Controllers.Manager.ProductRequest
+@using video_streamming_proxy.Domain
+
+@{
+    Layout = "_Manager";    
+}
+
+<!DOCTYPE html>
+<div class="flex flex-nowrap">
+    
+    <form action="/manager/products/add" enctype="multipart/form-data" method="POST">
+        <div>
+            <h3 class="mb-5 font-bold">Novo Produto</h3>
+        </div>    
+        <div class="mb-3">
+            <input type="text" class="border-2 p-2" name="name" size="60" placeholder="Name" id="name" />
+        </div>
+        <div class="mb-3">            
+            <input type="text" class="border-2 p-2" name="description" size="100" placeholder="Description" id="description" />
+        </div>
+        <div class="mb-3">            
+            <input type="text" class="border-2 p-2" name="slug" size="100" placeholder="Slug" id="description" />
+        </div>
+        <div>Thumbnail</div>
+        <div class="mb-3">            
+            <input name="thumbnail" class="border-2 p-2" placeholder="Thumbnail" type="file" />
+        </div>
+        <div >
+            <button type="submit" class="p-2 bg-sky-900 text-white">Salvar</button>
+            <button type="button" onClick='window.location="/manager/products"' class="p-2 bg-gray-900 text-white">Cancelar</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+@page
+@using System.Globalization
+@using video_streamming_proxy.Domain
+
+@{
+    Layout = "_Manager";    
+}
+
+<!DOCTYPE html>
+@{
+    Course[] data = ViewBag.Courses;
+}
+<div class="flex text-right items mb-5">
+    <a href="/manager/products/add" class="p-3 bg-sky-900 text-white">
+        Adicionar
+    </a>
+</div>
+<table class="table-auto" width="100%">
+    <thead>
+        <tr>
+            <th class="text-left">Name</th>
+            <th class="text-left">Slug</th>
+            <th class="text-left">Status</th>
+            <th class="text-left">Price</th>
+            <th class="text-left">Created At</th>
+            <th class="text-left">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in data)
+        {
+            <tr>
+                <td>@course.Name</td>
+                <td>@course.Slug</td>
+                <td>@course.Status</td>
+                <td>@course.Amount</td>
+                <td>@course.CreatedAt.ToString("d", new CultureInfo("pt-BR"))</td>
+                <td>
+                    <a href="/manager/products/@course.Id">Edit</a>
+                    <a href="/manager/products/@course.Id/prices">Prices</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
