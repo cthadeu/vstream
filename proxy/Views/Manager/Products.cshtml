@@ -36,8 +36,9 @@
                 <td>@course.Amount</td>
                 <td>@course.CreatedAt.ToString("d", new CultureInfo("pt-BR"))</td>
                 <td>
-                    <a href="/manager/products/@course.Id">Edit</a>
-                    <a href="/manager/products/@course.Id/prices">Prices</a>
+                    <a class="hover:underline" href="/manager/products/@course.Id">Editar</a>&nbsp;|&nbsp;
+                    <a class="hover:underline" href="/manager/products/@course.Id/prices">Preços</a>&nbsp;|&nbsp;
+                    <a class="hover:underline" href="/manager/products/@course.Id/sections">Seções</a>
                 </td>
             </tr>
         }

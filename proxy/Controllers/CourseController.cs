@@ -21,7 +21,7 @@ namespace video_streamming_proxy.Controllers
         {
             var courses = await courseRepository.GetAll();       
             ViewBag.Courses = courses.ToArray(); 
-            return View();
+            return View("Index");
         }
         
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "g9bek5AwxZ2E1QcxrUoWwvQasXkWylgU6dyhX8tmadA=",
+  "Hash": "W/6iEH+l0mO7gT0cRYmYjsrCvWan4zCTP4JBdQm/P8Q=",
   "Source": "video-streamming-proxy",
   "BasePath": "_content/video-streamming-proxy",
   "Mode": "Default",
@@ -8,19 +8,19 @@
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [
     {
-      "Name": "video-streamming-proxy\\wwwroot",
+      "Name": "video-streamming-proxy/wwwroot",
       "Source": "video-streamming-proxy",
-      "ContentRoot": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\",
+      "ContentRoot": "/Users/cyrox/personal/vstream/proxy/wwwroot/",
       "BasePath": "_content/video-streamming-proxy",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\assets\\css\\style.css",
+      "Identity": "/Users/cyrox/personal/vstream/proxy/wwwroot/assets/css/style.css",
       "SourceId": "video-streamming-proxy",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\",
+      "ContentRoot": "/Users/cyrox/personal/vstream/proxy/wwwroot/",
       "BasePath": "_content/video-streamming-proxy",
       "RelativePath": "assets/css/style.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\css\\style.css"
+      "OriginalItemSpec": "wwwroot/assets/css/style.css"
     },
     {
-      "Identity": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\assets\\css\\waves.css",
+      "Identity": "/Users/cyrox/personal/vstream/proxy/wwwroot/assets/css/waves.css",
       "SourceId": "video-streamming-proxy",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\",
+      "ContentRoot": "/Users/cyrox/personal/vstream/proxy/wwwroot/",
       "BasePath": "_content/video-streamming-proxy",
       "RelativePath": "assets/css/waves.css",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\css\\waves.css"
+      "OriginalItemSpec": "wwwroot/assets/css/waves.css"
     },
     {
-      "Identity": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\assets\\js\\index.js",
+      "Identity": "/Users/cyrox/personal/vstream/proxy/wwwroot/assets/js/index.js",
       "SourceId": "video-streamming-proxy",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\cyrot\\per\\video-streamming\\proxy\\wwwroot\\",
+      "ContentRoot": "/Users/cyrox/personal/vstream/proxy/wwwroot/",
       "BasePath": "_content/video-streamming-proxy",
       "RelativePath": "assets/js/index.js",
       "AssetKind": "All",
@@ -65,7 +65,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\js\\index.js"
+      "OriginalItemSpec": "wwwroot/assets/js/index.js"
     }
   ]
 }

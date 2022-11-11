@@ -17,8 +17,8 @@ create table courses
     id          varchar(36)  not null
         primary key,
     name        varchar(255) not null,
-    thumbnail   varchar(200),
-    fullimage   varchar(200),
+    thumbnail   text,
+    fullimage   text,
     description text,
     status      varchar(30),
     slug        varchar(255),
@@ -78,6 +78,7 @@ create table course_prices
             references courses,
     created_at timestamp   not null,
     amount     numeric(8, 2),
+    active     int not null default 1,
     constraint pk
         primary key (id, course_id)
 );

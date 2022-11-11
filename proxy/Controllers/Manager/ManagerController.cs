@@ -14,18 +14,31 @@ public class ProductRequest
     public string Name { get; set; }
     public string Description { get; set; }
     public string Slug { get; set; }
+    
     public IFormFile Thumbnail { get; set; }
 
 }
+
+public class ModuleRequest
+{
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public string Slug { get; set; }
+    public IFormFile Thumbnail { get; set; }
+    public IFormFile VideoFile { get; set; }
+}
+
 
 [Route("manager")]
 public class ManagerController : Controller
 {
     private readonly ICourseRepository courseRepository;
+    private readonly IMediaRepository mediaRepository;
 
-    public ManagerController(ICourseRepository courseRepository) 
+    public ManagerController(ICourseRepository courseRepository, IMediaRepository mediaRepository)
     {
         this.courseRepository = courseRepository;
+        this.mediaRepository = mediaRepository;
     }
 
     [HttpGet]
@@ -41,11 +54,60 @@ public class ManagerController : Controller
         ViewBag.Courses = courses.ToArray(); 
         return View();
     }
+    
+    [HttpGet("products/{id}/sections")]
+    public async Task<IActionResult> ProductsModules(string id)
+    {
+        var course = await courseRepository.GetById(id);       
+        ViewBag.Course = course; 
+        return View("ProductsSections");
+    }
+    
+    [HttpGet("products/{id}/sections/add")]
+    public async Task<IActionResult> AddProductsModule(string id)
+    {
+        var course = await courseRepository.GetById(id);       
+        ViewBag.Course = course; 
+        return View("ProductsSectionsForm");
+    }
 
     [HttpGet("products/add")]
     public IActionResult ProductsAdd(){
 
         return View("ProductsForm", new ProductRequest());
+    }
+    
+    [HttpPost("products/{id}/sections")]
+    public async Task<IActionResult> SaveModule(string id, ModuleRequest moduleRequest)
+    {   
+        var tempFile = Path.GetTempFileName();
+        using (var stream = System.IO.File.Create(tempFile)) 
+        {
+            moduleRequest.Thumbnail.CopyTo(stream);
+        }
+            
+
+        byte[] imageData = await System.IO.File.ReadAllBytesAsync(tempFile);
+        var mediaId = Guid.NewGuid().ToString("N");
+        var chapter = new Chapter() 
+        {
+            Title = moduleRequest.Title,
+            Description = moduleRequest.Description,
+            Id = Guid.NewGuid().ToString(),
+            Thumbnail = Convert.ToBase64String(imageData),
+            Media = new Media
+            {
+                Id = mediaId,
+                Name = mediaId,
+                Slug = moduleRequest.Slug,
+                Filename = "",
+                Status = MediaStatus.Processing,
+                CreatedAt = DateTime.UtcNow
+            }
+        };
+        await mediaRepository.Save(chapter.Media);
+        await courseRepository.SaveChapter(chapter, id);
+        return Redirect($"/manager/products/{id}/sections");
     }
 
     [HttpPost("products/add")]
@@ -56,8 +118,7 @@ public class ManagerController : Controller
         {
             productRequest.Thumbnail.CopyTo(stream);
         }
-            
-
+        
         byte[] imageData = await System.IO.File.ReadAllBytesAsync(tempFile);
         var course = new Course 
         {

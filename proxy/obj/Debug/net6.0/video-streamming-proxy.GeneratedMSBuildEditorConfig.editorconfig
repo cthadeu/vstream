@@ -8,77 +8,85 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = video_streamming_proxy
 build_property.RootNamespace = video_streamming_proxy
-build_property.ProjectDir = C:\Users\cyrot\per\video-streamming\proxy\
+build_property.ProjectDir = /Users/cyrox/personal/vstream/proxy/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\cyrot\per\video-streamming\proxy
+build_property.MSBuildProjectDirectory = /Users/cyrox/personal/vstream/proxy
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Course/Detail.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXERldGFpbC5jc2h0bWw=
+[/Users/cyrox/personal/vstream/proxy/Views/Course/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cnNlL0RldGFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Course/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlXEluZGV4LmNzaHRtbA==
+[/Users/cyrox/personal/vstream/proxy/Views/Course/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ291cnNlL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Home/Content.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250ZW50LmNzaHRtbA==
+[/Users/cyrox/personal/vstream/proxy/Views/Home/Content.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Db250ZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[/Users/cyrox/personal/vstream/proxy/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Home/Videos.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWRlb3MuY3NodG1s
+[/Users/cyrox/personal/vstream/proxy/Views/Home/Videos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9WaWRlb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Manager/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxJbmRleC5jc2h0bWw=
+[/Users/cyrox/personal/vstream/proxy/Views/Manager/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFuYWdlci9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Manager/Products.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxQcm9kdWN0cy5jc2h0bWw=
+[/Users/cyrox/personal/vstream/proxy/Views/Manager/Products.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFuYWdlci9Qcm9kdWN0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Manager/ProductsForm.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFuYWdlclxQcm9kdWN0c0Zvcm0uY3NodG1s
+[/Users/cyrox/personal/vstream/proxy/Views/Manager/ProductsForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFuYWdlci9Qcm9kdWN0c0Zvcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Shared/_Main.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NYWluLmNzaHRtbA==
+[/Users/cyrox/personal/vstream/proxy/Views/Manager/ProductsSections.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFuYWdlci9Qcm9kdWN0c1NlY3Rpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Shared/_Manager.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9NYW5hZ2VyLmNzaHRtbA==
+[/Users/cyrox/personal/vstream/proxy/Views/Manager/ProductsSectionsForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFuYWdlci9Qcm9kdWN0c1NlY3Rpb25zRm9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Shared/_SignupArea.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaWdudXBBcmVhLmNzaHRtbA==
+[/Users/cyrox/personal/vstream/proxy/Views/Shared/_Main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19NYWluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Signup/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2lnbnVwXEluZGV4LmNzaHRtbA==
+[/Users/cyrox/personal/vstream/proxy/Views/Shared/_Manager.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19NYW5hZ2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/Upload/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXBsb2FkXEluZGV4LmNzaHRtbA==
+[/Users/cyrox/personal/vstream/proxy/Views/Shared/_SignupArea.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19TaWdudXBBcmVhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/User/ConfirmPurchase.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDb25maXJtUHVyY2hhc2UuY3NodG1s
+[/Users/cyrox/personal/vstream/proxy/Views/Signup/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2lnbnVwL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/User/Courses.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDb3Vyc2VzLmNzaHRtbA==
+[/Users/cyrox/personal/vstream/proxy/Views/Upload/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXBsb2FkL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/User/PurchaseConfirmation.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxQdXJjaGFzZUNvbmZpcm1hdGlvbi5jc2h0bWw=
+[/Users/cyrox/personal/vstream/proxy/Views/User/ConfirmPurchase.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9Db25maXJtUHVyY2hhc2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/cyrot/per/video-streamming/proxy/Views/User/Watch.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxXYXRjaC5jc2h0bWw=
+[/Users/cyrox/personal/vstream/proxy/Views/User/Courses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9Db3Vyc2VzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cyrox/personal/vstream/proxy/Views/User/PurchaseConfirmation.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9QdXJjaGFzZUNvbmZpcm1hdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/cyrox/personal/vstream/proxy/Views/User/Watch.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9XYXRjaC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -12,8 +12,9 @@ namespace video_streamming_proxy.Repository
         Task<IEnumerable<Chapter>> GetChapters(string courseId);
         Task<Course> GetBySlug(string slug);
         Task<IEnumerable<Course>> GetByUser(string userId);
-
         Task<Course> GetById(string courseId);
+        Task SaveChapter(Chapter chapter, string courseId);
+
     }
     public class CourseRepository: ICourseRepository
     {
@@ -47,6 +48,24 @@ namespace video_streamming_proxy.Repository
                 course.Chapters = chapters;
             
             return course;
+        }
+
+        public async Task SaveChapter(Chapter chapter, string courseId)
+        {
+            var insert = @"insert into modules(id, thumbnail, title, description, course_id, media_id) 
+                           values(@id, @thumbnail, @title, @description, @course_id, @media_id)";
+
+            var parameters = new
+            {
+                id = chapter.Id,
+                title = chapter.Title,
+                description = chapter.Description,
+                thumbnail = chapter.Thumbnail,
+                course_id = courseId,
+                media_id = chapter.Media.Id
+            };
+
+            await _connection.ExecuteAsync(insert, parameters);
         }
 
         public async Task<Course> GetBySlug(string slug)

@@ -6,7 +6,7 @@
 	phone varchar(30) null,
 	user_type varchar(20) null,
 	created_at timestamp default CURRENT_TIMESTAMP
-)
+);
 
 create table user_courses (
 	user_id varchar(36) not null,

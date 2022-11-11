@@ -10,28 +10,32 @@
     bool UserHasCourse = ViewBag.UserHasCourse == null ? false : ViewBag.UserHasCourse;
 }
 <form action="/user/courses/@course.Slug/purchase" method="POST">
-    <input type="hidden" name="courseId" value="@course.Id" />
-    <div class="flex flex-nowrap">            
+    <input type="hidden" name="courseId" value="@course.Id"/>
+    <div class="flex flex-nowrap">
         <div class="w-full">
             <h1 class="text-3xl">@course.Name</h1>
-            <br />
-            <div class="p-3">-
+            <br/>
+            <div class="p-3">
+                -
                 <div class="flex flex-nowrap">
-                    <img src="@course.GetThumbnailImage()" class="w-72"  />                
+                    <img src="@course.GetThumbnailImage()" class="w-72"/>
                     <div class="p-3">@course.Description</div>
-                </div>                                
-            </div>                
+                </div>
+            </div>
         </div>
-        <div class="w-96 items-center text-center content-center py-10">            
-            @if (!UserHasCourse) 
+        <div class="w-96 items-center text-center content-center py-10">
+            @if (!UserHasCourse)
             {
-                
                 <h2 class="text-5xl mb-5">R$ @course.Amount</h2>
-                <button class="p-3 bg-slate-900 text-white w-full " type="submit">Comprar</button>                
-            } else {
+                <button class="p-3 bg-slate-900 text-white w-full " type="submit">Comprar</button>
+            }
+            else
+            {
                 <a href="/user/courses/@course.Id" class="p-3 bg-slate-900 text-white w-5 min-w-full">Ir para curso</a>
             }
-            
-        <div>
+
+            <div>
+            </div>
+        </div>
     </div>
 </form>

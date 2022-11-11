@@ -1,0 +1,40 @@
+@page
+@using System.Globalization
+@using video_streamming_proxy.Domain
+
+@{
+Layout = "_Manager";
+}
+
+<!DOCTYPE html>
+@{
+Course course = ViewBag.Course;
+}
+<div class="flex text-right items mb-5">
+    <a href="/manager/products/@course.Id/sections/add" class="p-3 bg-sky-900 text-white">
+        Adicionar
+    </a>
+</div>
+<table class="table-auto" width="100%">
+    <thead>
+    <tr>
+        <th class="text-left">Thumb</th>
+        <th class="text-left">Titulo</th>
+        <th class="text-left">Description</th>
+        <th class="text-left">Options</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var chapter in course.Chapters)
+    {
+    <tr>
+        <td></td>
+        <td>@chapter.Title</td>
+        <td>@chapter.Description</td>
+        <td>
+            <a class="hover:underline" href="/manager/products/@course.Id">Editar</a>&nbsp;|&nbsp;
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
