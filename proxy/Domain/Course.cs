@@ -15,6 +15,11 @@ public class Chapter
     public string Thumbnail { get; set; }
 
     public Media Media { get; set; }
+
+    public string GetThumbnailImage()
+    {            
+        return $"data:image/png;base64,{Thumbnail}";    
+    }
 }
 public class Course
 {

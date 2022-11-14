@@ -15,9 +15,10 @@
         Adicionar
     </a>
 </div>
-<table class="table-auto" width="100%">
+<table class="table" width="100%">
     <thead>
         <tr>
+            <th>Thumb</th>
             <th class="text-left">Name</th>
             <th class="text-left">Slug</th>
             <th class="text-left">Status</th>
@@ -30,11 +31,16 @@
         @foreach (var course in data)
         {
             <tr>
+                <td>
+                    <figure class="image is-48x48">
+                        <img src="@course.GetThumbnailImage()" height="30">
+                    </figure>
+                </td>
                 <td>@course.Name</td>
                 <td>@course.Slug</td>
                 <td>@course.Status</td>
                 <td>@course.Amount</td>
-                <td>@course.CreatedAt.ToString("d", new CultureInfo("pt-BR"))</td>
+                <td>@course.CreatedAt.ToString("D", new CultureInfo("pt-BR"))</td>
                 <td>
                     <a class="hover:underline" href="/manager/products/@course.Id">Editar</a>&nbsp;|&nbsp;
                     <a class="hover:underline" href="/manager/products/@course.Id/prices">Preços</a>&nbsp;|&nbsp;

@@ -15,6 +15,8 @@ namespace video_streamming_proxy.Repository
         Task<Course> GetById(string courseId);
         Task SaveChapter(Chapter chapter, string courseId);
 
+        Task SaveNewPrice(decimal price, string courseId);
+
     }
     public class CourseRepository: ICourseRepository
     {
@@ -118,6 +120,27 @@ namespace video_streamming_proxy.Repository
             };
 
             await _connection.ExecuteAsync(insert, parameters);
+        }
+
+        public async Task SaveNewPrice(decimal price, string courseId)
+        {
+            var update = "update course_prices set active = 0 where course_id = @course_id";
+
+            var insert = @"insert into course_prices(id, course_id, amount, created_at, active) 
+                           values(@id, @courseId, @price, @created_at, @active)";
+
+            var parameters = new
+            {
+                id = Guid.NewGuid().ToString(),
+                courseId = courseId,
+                price = price,
+                created_at = DateTime.UtcNow,
+                active = 1,
+            };
+
+            await _connection.ExecuteAsync(update, new { course_id = courseId });
+            await _connection.ExecuteAsync(insert, parameters);
+            
         }
     }
 }

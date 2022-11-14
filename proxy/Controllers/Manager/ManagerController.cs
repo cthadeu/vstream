@@ -28,6 +28,11 @@ public class ModuleRequest
     public IFormFile VideoFile { get; set; }
 }
 
+public class PriceRequest
+{
+    public decimal Price { get; set;}
+}
+
 
 [Route("manager")]
 public class ManagerController : Controller
@@ -78,6 +83,8 @@ public class ManagerController : Controller
     }
     
     [HttpPost("products/{id}/sections")]
+    [RequestFormLimits(MultipartBodyLengthLimit = 209715200)]
+    [RequestSizeLimit(209715200)]
     public async Task<IActionResult> SaveModule(string id, ModuleRequest moduleRequest)
     {   
         var tempFile = Path.GetTempFileName();
@@ -133,4 +140,21 @@ public class ManagerController : Controller
         await courseRepository.Save(course);
         return RedirectToAction("Products");
     }
+
+    [HttpGet("products/{id}/prices")]
+    public async Task<IActionResult> GetPrice(string id)
+    {   
+        
+        var course = await courseRepository.GetById(id);
+        ViewBag.Course = course;
+        return View("ProductsPrices");
+    }
+
+    [HttpPost("products/{id}/prices")]
+    public async Task<IActionResult> SaveNewPrice(string id, PriceRequest priceRequest)
+    {   
+        await courseRepository.SaveNewPrice(priceRequest.Price, id);
+        return Redirect($"/manager/products");
+    }
+
 }

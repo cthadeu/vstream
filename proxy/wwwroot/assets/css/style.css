@@ -1,5 +1,6 @@
-body{
-    font-family: "Source Sans Pro", sans-serif;
+* {
+    font-family: "Montserrat";
+    font-weight: 300;
 }
 .light-blue {
     color: #4c51bf;

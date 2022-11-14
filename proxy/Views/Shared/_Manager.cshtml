@@ -7,33 +7,60 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />        
         <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;900&display=swap" rel="stylesheet">
         <link href="/assets/css/style.css" rel="stylesheet" />
-        <link rel="preconnect" href="https://fonts.gassets.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
         <title>Manager</title>
     </head>   
     <body>
-    <div class="mx-auto container px-6">
+    <section class="section">
+        <h2 class="is-size-3">Gerenciador da Plataforma</h2>
 
-        <div class="h-full px-2">
-            <div class="container mx-auto">
-                <h1 class="text-xl font-semibold lg:py-9 py-5">Gerenciador da Plataforma</h1>
-                <div class="grid grid-flow-col auto-cols-max">
-                    <div class="mr-5 p-2"><a href="/manager/products">Produtos</a></div>
-                    <div class="mr-5 p-2"><a href="/manager/orders">Compras</a></div>
-                    <div class="mr-5 p-2"><a href="/manager/users">Usuarios</a></div>        
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+
+            <div class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item">
+                        <a href="/manager/products">Produtos</a>
+                    </a>
+
+                    <a class="navbar-item">
+                        <a href="/manager/orders">Compras</a>
+                    </a>
+
+                    <a class="navbar-item">
+                        <a href="/manager/users">Usuarios</a>
+                    </a>
+                 </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                        <a class="button is-primary">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a class="button is-light">
+                            Log in
+                        </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="mt-5">
-                    @RenderBody()
-                </div>   
             </div>
-        </div>
+        </nav>
 
+        <section class="section">
+            @RenderBody()
+        </section>
+        
+    </section>
+        
                        
         <!-- body -->
         
-    </div>
+    
         <!-- body -->
         <script src="~/assets/js/index.js"></script>
     </body>
