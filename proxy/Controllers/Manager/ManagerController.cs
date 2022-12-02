@@ -31,6 +31,23 @@ public class ModuleRequest
 public class PriceRequest
 {
     public decimal Price { get; set;}
+    public Plan Plan { get; set; }
+    
+
+    public Price ToPrice(string courseId)
+    {
+        var price = new Price
+        {
+            Id = Guid.NewGuid().ToString(),
+            CourseId = courseId,
+            Active = 1,
+            CreatedAt = DateTime.UtcNow,
+            Amount = this.Price,
+            Plan = this.Plan
+        };
+        return price;
+    }
+    
 }
 
 
@@ -59,12 +76,32 @@ public class ManagerController : Controller
         ViewBag.Courses = courses.ToArray(); 
         return View();
     }
+
+    [HttpPost("products/{id}/edit")]
+    public async Task<IActionResult> UpdateProduct(string id, ProductRequest productRequest)
+    {
+        var product = await courseRepository.GetById(id);
+        product.Name = productRequest.Name;
+        product.Description = productRequest.Description;
+        product.Slug = productRequest.Slug;
+        await courseRepository.Update(product);
+        return Redirect($"/manager/products"); 
+    }
+
+    [HttpGet("products/{id}")]
+    public async Task<IActionResult> EditProduct(string id)
+    {
+        var product = await courseRepository.GetById(id);
+        ViewBag.Course = product;
+        return View("ProductsUpdateForm");
+    }
     
     [HttpGet("products/{id}/sections")]
     public async Task<IActionResult> ProductsModules(string id)
     {
         var course = await courseRepository.GetById(id);       
         ViewBag.Course = course; 
+        
         return View("ProductsSections");
     }
     
@@ -152,9 +189,11 @@ public class ManagerController : Controller
 
     [HttpPost("products/{id}/prices")]
     public async Task<IActionResult> SaveNewPrice(string id, PriceRequest priceRequest)
-    {   
-        await courseRepository.SaveNewPrice(priceRequest.Price, id);
-        return Redirect($"/manager/products");
+    {
+        var course = await courseRepository.GetById(id);
+        course.AddPrice(priceRequest.ToPrice(id));
+        await courseRepository.Update(course);
+        return Redirect($"/manager/products/{id}/prices");
     }
 
 }

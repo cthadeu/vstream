@@ -7,23 +7,18 @@ namespace video_streamming_proxy.Controllers;
 
 public class AuthController : Controller
 {
-    private readonly IMediaRepository _mediaRepository;
-    private readonly ICourseRepository courseRepository;
+    
     private readonly IUserRepository userRepository;
 
-    public AuthController(IMediaRepository mediaRepository, 
-        ICourseRepository courseRepository,
-        IUserRepository userRepository)
+    public AuthController(IUserRepository userRepository)
     {
-        _mediaRepository = mediaRepository;
-        this.courseRepository = courseRepository;
         this.userRepository = userRepository;
     }
 
     [HttpGet]
     public IActionResult Index() 
     {
-        return View("home/index");
+        return View("Index");
     }
 
     [HttpPost]

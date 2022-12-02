@@ -6,87 +6,83 @@
 }
 <!DOCTYPE html>
 @{
-    Course course = ViewBag.Detail;
+    Course course = ViewBag.Course;
+    Chapter[] chapters = ViewBag.Chapters;
 }
-<div class="w-full border border-inner">
-    <div class="lg-p8">
-<div class="lg:w-2/4 h-full lg:h-64">
-    <div class="relative w-full h-64">
-        <div class="w-full h-full">
-            <div style="height: 100%" class="slider lg:relative w-full">
-                <div class="slide-ana">
-                    <div class="w-full relative">
-                        <img src="https://cdn.tuk.dev/assets/templates/classified/Mask.png" class="w-full w-full h-full object-cover object-center" />
-                    </div>
-                    <div class="w-full relative">
-                        <img src="https://cdn.tuk.dev/assets/templates/classified/Mask.png" class="w-full w-full h-full object-cover object-center" />
+
+<section class="section">
+    <h1 class="is-size-3 title">@course.Name</h1>
+    <div class="columns mt-5">
+        <div class="column is-4 video 16by9">
+            <img src="@course.GetThumbnailImage()" class="w-72"/>
+        </div>
+        <div class="column has-text-left">
+            <div >@course.Description </div>
+            <hr/>
+            <p>
+                <ion-icon name="ellipsis-horizontal-circle-outline"></ion-icon>
+                Total de (@course.Chapters.Count())
+            </p>
+            <p>
+                <ion-icon name="ban-outline"></ion-icon>
+                Cancele sem custo a qualquer momento
+            </p>
+            <p>
+                <ion-icon name="happy-outline"></ion-icon>
+                Mais de 300 clientes satisfeitos
+            </p>
+            <hr/>
+            <div class="dropdown is-full-size">
+                <div class="dropdown-trigger">
+                    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu2">
+                        <span>Conheça os módulos</span>
+                        <span class="icon is-small">
+                            <ion-icon name="caret-down-outline"></ion-icon>
+                        </span>
+                    </button>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu2" role="menu">
+                    <div class="dropdown-content">
+                        @foreach (var chapter in @course.Chapters)
+                        {
+                            <div class="dropdown-item">
+                                <p>@chapter.Title</p>
+                            </div>
+                            <hr class="dropdown-divider">
+                        }
                     </div>
                 </div>
             </div>
 
-            <div class="flex items-center inset-0 absolute justify-between px-2">
-                <div class="w-6 h-6 relative bg-white rounded-full flex inset-0 items-center justify-center cursor-pointer" id="prev">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <polyline points="15 6 9 12 15 18" />
-                    </svg>
+        </div>
+        <div class="column is-one-third">
+            <h3>Planos Disponíveis</h3>
+            @foreach (var price in course.GetAvailablePrices())
+            {
+                <div class="card mt-3 is-clickable" onclick="selectPlan('@price.Plan')" id="@price.Plan">
+                    <div class="card-content">
+                        <div class="content">
+                            Plano @price.Plan
+                            <h3>R$ @price.Amount</h3>
+                        </div>
+                    </div>
                 </div>
+            }
+            <button class="button mt-3 is-large is-responsive is-fullwidth is-primary" onClick="goCheckout()">Compre Agora</button>
+        </div>
+    </div>
+</section>
 
-                <div class="w-6 h-6 relative bg-white rounded-full flex inset-0 items-center justify-center cursor-pointer" id="next">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <polyline points="9 6 15 12 9 18" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="flex items-center justify-between h-16 relative bg-dark-gray">
-        <div class="flex items-center justiy-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <polyline points="15 6 9 12 15 18" />
-            </svg>
-        </div>
-        <div class="flex">
-            <img src="https://cdn.tuk.dev/assets/templates/classified/Rectangle.png" class="mr-1" />
-            <img src="https://cdn.tuk.dev/assets/templates/classified/Rectangle-Copy-4.png" class="mr-1" />
-            <img src="https://cdn.tuk.dev/assets/templates/classified/Rectangle-Copy-5.png" class="mr-1" />
-            <img src="https://cdn.tuk.dev/assets/templates/classified/Rectangle-Copy-6.png" class="mr-1" />
-            <img src="https://cdn.tuk.dev/assets/templates/classified/Rectangle-Copy-7.png" />
-        </div>
-        <div class="flex items-center justiy-end">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <polyline points="9 6 15 12 9 18" />
-            </svg>
-        </div>
-    </div>
-</div>
-
-<div class="pl-6 pr-8">
-    <h1 class="text-2xl font-semibold dark-gray lg:mt-0 mt-4">@course.Name</h1>
-    <p class="text-xs line-height-18 light-gray py-3">
-        @course.Description
-        <br />
-        <br />        
-    </p>
-    <div class="flex mt-4">
-        <div>
-            <p class="text-xs light-gray px-2 bg-dark-gray py-1">12 months warranty</p>
-        </div>
-        <div class="pl-2">
-            <p class="text-xs light-gray px-2 bg-dark-gray py-1">Complete box</p>
-        </div>
-        <div class="pl-2">
-            <p class="text-xs light-gray px-2 bg-dark-gray py-1">Complete box</p>
-        </div>
-    </div>
-   
-    <div class="flex items-center justify-between mt-8 py-4">
-        <h2 class="purple text-sm font-semibold">Bay Area, San Francisco</h2>
-        <h3 class="purple text-3xl font-semibold">$350</h3>
-    </div>
-</div>
-</div>
-</div>
+<script type="text/javascript">
+var selectedPlan = '';
+function selectPlan(plan) {
+    selectedPlan = plan;    
+    document.getElementById(selectedPlan).classList.add('has-background-primary');
+    if (selectedPlan !== '') {
+        document.getElementById(selectedPlan).classList.remove('has-background-primary');    
+    }        
+}
+function goCheckout() {
+    window.location = '/user/courses/@course.Slug/purchase?plan='+selectedPlan;
+}
+</script>

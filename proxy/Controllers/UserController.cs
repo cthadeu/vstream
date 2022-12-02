@@ -34,11 +34,11 @@ namespace video_streamming_proxy.Controllers
         [HttpGet("courses/{courseId}")]
         public async Task<IActionResult> WatchMode([FromRoute] string courseId, [FromQuery] string chapter)
         {
-            var userId = HttpContext.User.Claims.Where(x => x.Type == "id").First().Value;
-            
-            var items = await this.courseRepository.GetByUser(userId);
-            var course = items.Where(x => x.Id == courseId).First();
-            var chapters = await this.courseRepository.GetChapters(courseId);
+            var userId = HttpContext.User.Claims.First(x => x.Type == "id").Value;
+            Console.WriteLine($"User ID => {userId}");
+            var items = await courseRepository.GetByUser(userId);
+            var course = items.First(x => x.Id == courseId);
+            var chapters = await courseRepository.GetChapters(courseId);
             var selectedChapter = string.IsNullOrEmpty(chapter) ? chapters.First() : chapters.First(x => x.Id == chapter);            
             ViewBag.Course = course;
             ViewBag.Chapters = chapters.ToArray();
@@ -51,9 +51,8 @@ namespace video_streamming_proxy.Controllers
         public async Task<IActionResult> ConfirmPurchase([FromRoute] string slug)
         {
             var userId = HttpContext.User.Claims.Where(x => x.Type == "id").FirstOrDefault().Value;                        
-            var userCourses = await this.courseRepository.GetByUser(userId);
-            var course = await this.courseRepository.GetBySlug(slug);
-            Console.WriteLine($"ID => {course.Id}");            
+            var userCourses = await courseRepository.GetByUser(userId);
+            var course = await courseRepository.GetBySlug(slug);
             ViewBag.UserHasCourse = userCourses?.Any(x => x.Id == course.Id);
             ViewBag.Detail = course;
             return View();
@@ -64,18 +63,15 @@ namespace video_streamming_proxy.Controllers
         public async Task<IActionResult> Purchase([FromRoute] string slug)
         {
             var userId = HttpContext.User.Claims.Where(x => x.Type == "id").First().Value;
-            var item = await this.courseRepository.GetBySlug(slug);
+            var item = await courseRepository.GetBySlug(slug);
             ViewBag.Detail = item;
             try {
-                await this.userRepository.AddCourse(item, new Domain.User(userId));
+                await userRepository.AddCourse(item, new Domain.User(userId));
                 return View("PurchaseConfirmation");
             } catch(Exception e) 
             {
-                return this.BadRequest("Não foi possivel concluir a operação");
+                return BadRequest("Não foi possivel concluir a operação");
             }
-            
-            
         }
-
     }
 }

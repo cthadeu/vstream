@@ -1,6 +1,7 @@
 
 using System.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using MongoDB.Driver;
 using Npgsql;
 using video_streamming_proxy.Repository;
 
@@ -9,9 +10,23 @@ builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetSecti
 builder.Services.AddScoped<IDbConnection>((sp) => {
     return new NpgsqlConnection("Server=localhost;Port=5432;Database=vstream;User Id=postgres;Password=postgres");
 });
+builder.Services.AddScoped<IMongoDatabase>(provider =>
+{
+    var credential = new MongoCredential(
+        "SCRAM-SHA-1", 
+        new MongoInternalIdentity("vstream", "vstream"),
+        new PasswordEvidence("vstream"));
+    var mongoServer = new MongoServerAddress("localhost");
+    var settints = new MongoClientSettings();
+    settints.Credential = credential;
+    settints.Server = mongoServer;
+    
+    var mongoClient = new MongoClient(settints);
+    return mongoClient.GetDatabase("vstream");
+});
 builder.Services.AddScoped<IMediaRepository, MediaRepository>();
-builder.Services.AddScoped<ICourseRepository, CourseRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ICourseRepository, CourseMongoRepository>();
+builder.Services.AddScoped<IUserRepository, UserMongoRepository>();
 builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>

@@ -3,51 +3,52 @@
 
 @{
     Layout = "_Main";
+    
 }
 
 <!DOCTYPE html>
 @{
-    Course[] data = ViewBag.Courses;     
+    Course[] data = ViewBag.Courses;
 }
 
-<div class="bg-light-gray h-full px-6">
-    <div class="container mx-auto">
-        <h1 class="text-xl font-semibold dark-gray mb-6 lg:py-10 py-8">Cursos Adquiridos</h1>
-        <div class="flex flex-wrap items-center lg:justify-between justify-center">
-        
-                @if(data.Length == 0)
-                {
-                    <h1 class="text-3xl">Você ainda não adquiriu nenhum curso</h1>
-                }
-                @foreach (var course in data) 
-                { 
-                <a href="/user/courses/@course.Id">
-                <div class="mx-2 w-72 xl:mb-0 mb-8">
-                    <div>
-                        <img src="https://cdn.tuk.dev/assets/templates/classified/Bitmap (1).png" class="w-full h-44" />
-                    </div>
-                    <div class="bg-white">
+<h1 class="title">Meus Cursos</h1>
+<article class="media">
+    
+        @foreach (var course in data) 
+        { 
+
+            <div class="card">
+                <div class="card-image">
+                    <figure class="image is-4by3">
+                        @if (string.IsNullOrEmpty(course.GetThumbnailImage()))
+                        {
+                            <img src="https://bulma.io/images/placeholders/128x128.png">
+                        }
+                        else
+                        {
+                            <img src="@course.GetThumbnailImage()" alt="Placeholder image">    
+                        }
+                    </figure>
+                </div>
+                <div class="card-content">
+                    <div class="media">
                         
-                        <div class="p-4">
-                            <div class="flex items-center">
-                                <h2 class="text-lg font-semibold dark-gray">@course.Name</h2>                                
-                            </div>
-                            <p class="text-xs light-gray mt-2">@course.Description</p>
-                            <div class="flex mt-4">
-                                <div>
-                                    <p class="text-xs light-gray px-2 bg-dark-gray py-1">12 months warranty</p>
-                                </div>
-                                <div class="pl-2">
-                                    <p class="text-xs light-gray px-2 bg-dark-gray py-1">Complete box</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-between py-4">                                
-                            </div>
+                        <div class="media-content">
+                            <p class="title is-4">@course.Name</p>
+                            <p class="subtitle is-6">R$ @course.Amount</p>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <p class="is-size-6">@course.Description</p>
+                        
+                        <div style="margin-top:20px">
+                            <a href="/courses/@course.Slug" class="button is-light">Ver mais</a>
                         </div>
                     </div>
                 </div>
-                </a>
-                }
-        </div>   
-    </div>
-</div>
+            </div>
+        
+        }
+</div>   
+</article>

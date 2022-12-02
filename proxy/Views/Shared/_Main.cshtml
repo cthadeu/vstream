@@ -12,6 +12,8 @@
         <link href="/assets/css/style.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <title>Home</title>
     </head>   
     <body>
@@ -22,22 +24,27 @@
                     <a class="link is-info" href="/home/content">Home</a>
                 </p>
                 <p class="level-item has-text-centered">
-                    <a class="link is-info" href="/courses">Treinamentos</a>
+                    <a class="link is-info" href="/courses">Cursos</a>
                 </p>
                 <p class="level-item has-text-centered">
                     <img src="https://loja.seca30.com/wp-content/uploads/2022/06/icone-300x282.png" alt="" style="height: 80px;">
                 </p>
-                <p class="level-item has-text-centered">
-                    <a class="link is-info" href="/signup">Cadastre-se</a>
-                </p>
+                
                 @if ((User.Identity.IsAuthenticated))
                 {
-                    
                     <p class="level-item has-text-centered">
                         <a class="link is-info" href="/user/courses">Meus Cursos</a>
                     </p>
+                    
+                    <p class="level-item has-text-centered">
+                        <a class="link is-info" href="/user/profile" >Meu Perfil</a>
+                    </p>
                 }  else 
                 {
+                    <p class="level-item has-text-centered">
+                        <a class="link is-info" href="/signup">Cadastre-se</a>
+                    </p>
+                    
                     <p class="level-item has-text-centered">
                         <a class="link is-info" href="/auth" >Acessar</a>
                     </p>

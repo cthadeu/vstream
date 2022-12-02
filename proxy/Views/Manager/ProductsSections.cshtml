@@ -25,20 +25,23 @@ Course course = ViewBag.Course;
     </tr>
     </thead>
     <tbody>
-    @foreach (var chapter in course.Chapters)
+    @if (course.Chapters != null)
     {
-    <tr>
-        <td>
-            <figure class="image is-48x48">
-                <img src="@chapter.GetThumbnailImage()" height="30">
-            </figure>
-        </td>
-        <td>@chapter.Title</td>
-        <td>@chapter.Description</td>
-        <td>
-            <a class="hover:underline" href="/manager/products/@course.Id">Editar</a>
-        </td>
-    </tr>
+        @foreach (var chapter in course.Chapters)
+        {
+            <tr>
+                <td>
+                    <figure class="image is-48x48">
+                        <img src="@chapter.GetThumbnailImage()" height="30">
+                    </figure>
+                </td>
+                <td>@chapter.Title</td>
+                <td>@chapter.Description</td>
+                <td>
+                    <a class="hover:underline" href="/manager/products/@course.Id">Editar</a>
+                </td>
+            </tr>
+        }    
     }
     </tbody>
 </table>

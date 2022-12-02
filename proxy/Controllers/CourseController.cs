@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json;
 using video_streamming_proxy.Repository;
 
 
@@ -28,13 +27,17 @@ namespace video_streamming_proxy.Controllers
         [HttpGet("{slug}")]
         public async Task<IActionResult> GetCourseBySlug([FromRoute] string slug)
         {
-            var item = await this.courseRepository.GetBySlug(slug);                                   
-            ViewBag.Detail = item;
+            Console.WriteLine($"Course => {slug}");
+            var course = await courseRepository.GetBySlug(slug);      
+            Console.WriteLine($"Course => {course.Name}");
+            var chapters = await courseRepository.GetChapters(course.Id);
+            ViewBag.Course = course;
+            ViewBag.Chapters = chapters.ToArray();
             return View("Detail");
         }
 
         [Authorize]
-        [HttpGet("user/")]
+        [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetCoursesFromUser([FromRoute] string userId)
         {
             var items = await this.courseRepository.GetByUser(userId);

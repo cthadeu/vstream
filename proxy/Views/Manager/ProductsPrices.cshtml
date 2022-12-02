@@ -12,11 +12,45 @@
 <div class="flex flex-nowrap">
     
     <form action="/manager/products/@course.Id/prices" enctype="multipart/form-data" method="POST">
-        <div class>
-            <h3 class="mb-5 font-bold">Definir novo preço</h3>
-        </div>    
+        
+        <h3 class="mb-5 font-bold">Preços Atuais</h3>
+        <table class="table" width="100%">
+            <thead>
+            <tr>
+                <th>Plano</th>
+                <th>Moeda</th>
+                <th>Valor</th>
+                <th>Adicionado em</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var price in course.GetAvailablePrices())
+            {
+                <tr>
+                    <td>@price.Plan</td>
+                    <td>@price.Currency</td>
+                    <td>@price.Amount</td>
+                    <td>@price.CreatedAt</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    
+        <br /><br />
+        <h3 class="mb-5 font-bold">Definir novo preço</h3>
         <div class="mb-3">
-            <input type="text" class="border-2 p-2" name="price" size="60" placeholder="Novo Preço" id="price" />
+            Plano<br/>
+            <div class="select">
+                <select name="plan" class="border-2" placeholder="Plano">
+                    <option value="Monthly">Mensal</option>
+                    <option value="Quarterly">Trimestral</option>
+                    <option value="Semianual">Semestral</option>
+                    <option value="Yearly">Anual</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="border-2 p-2" name="price" size="60" placeholder="Novo Preço" id="price"/>
         </div>
         <div >
             <button type="submit" class="p-2 bg-sky-900 text-white">Salvar</button>

@@ -22,7 +22,7 @@
             <th class="text-left">Name</th>
             <th class="text-left">Slug</th>
             <th class="text-left">Status</th>
-            <th class="text-left">Price</th>
+            <th class="text-left">Modules</th>
             <th class="text-left">Created At</th>
             <th class="text-left">Options</th>
         </tr>
@@ -39,12 +39,12 @@
                 <td>@course.Name</td>
                 <td>@course.Slug</td>
                 <td>@course.Status</td>
-                <td>@course.Amount</td>
+                <td>@course.Chapters.Count()</td>
                 <td>@course.CreatedAt.ToString("D", new CultureInfo("pt-BR"))</td>
                 <td>
-                    <a class="hover:underline" href="/manager/products/@course.Id">Editar</a>&nbsp;|&nbsp;
-                    <a class="hover:underline" href="/manager/products/@course.Id/prices">Preços</a>&nbsp;|&nbsp;
-                    <a class="hover:underline" href="/manager/products/@course.Id/sections">Seções</a>
+                    <a class="hover:underline" href="/manager/products/@course.Id">Edit</a>&nbsp;|&nbsp;
+                    <a class="hover:underline" href="/manager/products/@course.Id/prices">Prices</a>&nbsp;|&nbsp;
+                    <a class="hover:underline" href="/manager/products/@course.Id/sections">Modules</a>
                 </td>
             </tr>
         }

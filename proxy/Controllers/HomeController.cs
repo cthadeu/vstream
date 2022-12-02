@@ -7,15 +7,13 @@ namespace video_streamming_proxy.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly IMediaRepository _mediaRepository;
     private readonly ICourseRepository courseRepository;
     private readonly IUserRepository userRepository;
 
-    public HomeController(IMediaRepository mediaRepository, 
+    public HomeController(
         ICourseRepository courseRepository,
         IUserRepository userRepository)
     {
-        _mediaRepository = mediaRepository;
         this.courseRepository = courseRepository;
         this.userRepository = userRepository;
     }
@@ -35,10 +33,10 @@ public class HomeController : Controller
         {
             var claims = new List<Claim>
             {
-                new Claim("user", user.Name),
-                new Claim("id", user.Id),
-                new Claim("email", user.Email),
-                new Claim("role", user.UserType.ToString())
+                new("user", user.Name),
+                new("id", user.Id),
+                new("email", user.Email),
+                new("role", user.UserType.ToString())
             };
 
             await HttpContext.SignInAsync(new ClaimsPrincipal(new ClaimsIdentity(claims, "Cookies", "user", "role")));

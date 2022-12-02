@@ -2,6 +2,7 @@
 using System.Data;
 using video_streamming_proxy.Domain;
 using System.Linq;
+using System.Text.Json;
 
 namespace video_streamming_proxy.Repository
 {
@@ -15,8 +16,9 @@ namespace video_streamming_proxy.Repository
         Task<Course> GetById(string courseId);
         Task SaveChapter(Chapter chapter, string courseId);
 
-        Task SaveNewPrice(decimal price, string courseId);
+        Task SaveNewPrice(Price price);
 
+        Task Update(Course course);
     }
     public class CourseRepository: ICourseRepository
     {
@@ -29,7 +31,7 @@ namespace video_streamming_proxy.Repository
 
         public async Task<IEnumerable<Course>> GetAll()
         {
-            var query = @"select courses.*, course_prices.amount from courses
+            var query = @"select courses.*, course_prices.plan, course_prices.amount from courses
                             left join course_prices on course_prices.course_id = courses.id
                             where course_prices.amount is null or course_prices.active = 1
                             order by courses.created_at desc, course_prices.created_at desc";
@@ -74,16 +76,19 @@ namespace video_streamming_proxy.Repository
         {
             var query = @"select c.*, course_prices.amount from courses c                           
                           left join course_prices on (course_prices.course_id = c.id)
-                          where course_prices.active = 1 or course_prices.id is null and c.slug = @slug";
+                          where c.slug = @slug and (course_prices.active = 1 or course_prices.id is null)";
             var result = await _connection.QueryAsync<Course>(query, new { slug });
             return result.FirstOrDefault();
         }
 
         public async Task<IEnumerable<Course>> GetByUser(string userId)
         {
-            var query = @"select c.* from courses c 
-                          inner join user_courses uc on (uc.course_id = c.id) 
-                          where uc.user_id = @id";
+            
+            var query = @"select courses.*, course_prices.amount from courses
+                            inner join user_courses uc on (uc.course_id = courses.id)
+                            left join course_prices on course_prices.course_id = courses.id
+                            where uc.user_id = @id and (course_prices.amount is null or course_prices.active = 1)
+                            order by courses.created_at desc, course_prices.created_at desc";
             var result = await _connection.QueryAsync<Course>(query, new { id = userId });
             return result;
         }
@@ -122,25 +127,33 @@ namespace video_streamming_proxy.Repository
             await _connection.ExecuteAsync(insert, parameters);
         }
 
-        public async Task SaveNewPrice(decimal price, string courseId)
+        public async Task SaveNewPrice(Price price)
         {
-            var update = "update course_prices set active = 0 where course_id = @course_id";
+            var update = @"update course_prices set active = 0 where course_id = @course_id and plan = @plan";
 
-            var insert = @"insert into course_prices(id, course_id, amount, created_at, active) 
-                           values(@id, @courseId, @price, @created_at, @active)";
+            var insert = @"insert into course_prices(id, course_id, amount, created_at, active, plan) 
+                           values(@id, @courseId, @price, @created_at, @active, @plan)";
 
             var parameters = new
             {
-                id = Guid.NewGuid().ToString(),
-                courseId = courseId,
-                price = price,
-                created_at = DateTime.UtcNow,
-                active = 1,
+                id = price.Id,
+                courseId = price.CourseId,
+                price = price.Amount,
+                created_at = price.CreatedAt,
+                active = price.Active,
+                plan = price.Plan.ToString() 
             };
+            
+            Console.WriteLine(JsonSerializer.Serialize(parameters));
 
-            await _connection.ExecuteAsync(update, new { course_id = courseId });
+            await _connection.ExecuteAsync(update, new { course_id = price.CourseId, plan = price.Plan.ToString() });
             await _connection.ExecuteAsync(insert, parameters);
             
+        }
+
+        public Task Update(Course course)
+        {
+            throw new NotImplementedException();
         }
     }
 }
